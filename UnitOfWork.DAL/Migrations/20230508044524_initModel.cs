@@ -28,24 +28,23 @@ namespace UnitOfWork.DAL.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     NameProduct = table.Column<string>(maxLength: 255, nullable: false),
                     Price = table.Column<int>(nullable: false),
-                    IdCategory = table.Column<int>(nullable: true),
-                    CategoryIdCateogory = table.Column<int>(nullable: true)
+                    IdCateogory = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.IdProduct);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryIdCateogory",
-                        column: x => x.CategoryIdCateogory,
+                        name: "FK_Products_Categories_IdCateogory",
+                        column: x => x.IdCateogory,
                         principalTable: "Categories",
                         principalColumn: "IdCateogory",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoryIdCateogory",
+                name: "IX_Products_IdCateogory",
                 table: "Products",
-                column: "CategoryIdCateogory");
+                column: "IdCateogory");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

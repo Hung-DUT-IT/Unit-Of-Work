@@ -9,7 +9,7 @@ namespace UnitOfWork.DAL.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly ApplicationDbContext _dbContext;
+        protected readonly ApplicationDbContext _dbContext;
         private readonly DbSet<T> _dbSet;
 
         public Repository(ApplicationDbContext dbContext)
@@ -23,7 +23,7 @@ namespace UnitOfWork.DAL.Repository
             return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetById(int? id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }

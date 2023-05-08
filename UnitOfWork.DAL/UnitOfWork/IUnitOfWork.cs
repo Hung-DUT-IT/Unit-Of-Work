@@ -9,8 +9,8 @@ namespace UnitOfWork.DAL.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<Category> Categories { get; }
-        IRepository<Product> Products { get; }
+        ICategoryRepository Categories { get; }
+        IProductRepository Products { get; }
         Task<int> SaveChangesAsync();
     }
 }

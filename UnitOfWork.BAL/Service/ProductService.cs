@@ -28,6 +28,16 @@ namespace UnitOfWork.BAL.Service
 
         public async Task Add(Product entity)
         {
+
+            if (!(await _unitOfWork.Categories.CategoryExists(entity.IdCateogory)))
+            {
+                await _unitOfWork.Categories.Add(new Category
+                {
+                    NameCategory = "No Name"
+                });
+                await _unitOfWork.SaveChangesAsync();
+            }
+
             await _unitOfWork.Products.Add(entity);
             await _unitOfWork.SaveChangesAsync();
         }

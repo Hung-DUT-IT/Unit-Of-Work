@@ -16,10 +16,7 @@ namespace UnitOfWork.DAL.Entities
         [Required]
         public int Price { get; set; }
 
-        //Foreign key for Category
-        [ForeignKey("Standard")]
-        public Nullable<int> IdCategory { get; set; }
-
+        public int IdCateogory { get; set; }
         public Category Category { get; set; }
     }
 }

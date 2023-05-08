@@ -36,6 +36,10 @@ namespace UnitOfWork
             services.AddScoped<IRepository<Category>, Repository<Category>>();
             services.AddScoped<IService<Category>, CategoryService>();
 
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+
             services.AddScoped<IUnitOfWork, UnitOfWorks>();
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
