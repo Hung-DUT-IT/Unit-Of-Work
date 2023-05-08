@@ -8,11 +8,11 @@ using UnitOfWork.DAL.Repository;
 
 namespace UnitOfWork.DAL.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWorks : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
 
-        public UnitOfWork(ApplicationDbContext context)
+        public UnitOfWorks(ApplicationDbContext context)
         {
             _context = context;
         }
