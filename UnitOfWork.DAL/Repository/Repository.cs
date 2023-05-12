@@ -11,9 +11,10 @@ namespace UnitOfWork.DAL.Repository
     {
         protected readonly ApplicationDbContext _dbContext;
         private readonly DbSet<T> _dbSet;
-
+        Guid id;
         public Repository(ApplicationDbContext dbContext)
         {
+            id = Guid.NewGuid();
             _dbContext = dbContext;
             _dbSet = dbContext.Set<T>();
         }

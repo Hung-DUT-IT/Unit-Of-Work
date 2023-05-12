@@ -10,10 +10,12 @@ namespace UnitOfWork.BAL.Service
     public class CategoryService : IService<Category>
     {
         private readonly IUnitOfWork _unitOfWork;
+        Guid id;
 
         public CategoryService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            id = Guid.NewGuid();
         }
 
         public async Task Add(Category entity)
@@ -30,6 +32,11 @@ namespace UnitOfWork.BAL.Service
         public async Task<Category> GetById(int id)
         {
             return await _unitOfWork.Categories.GetById(id);
+        }
+
+        public Guid GetID()
+        {
+            return id;
         }
 
         public async Task Remove(Category entity)

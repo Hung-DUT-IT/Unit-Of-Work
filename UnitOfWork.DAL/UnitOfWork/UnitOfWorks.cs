@@ -17,27 +17,27 @@ namespace UnitOfWork.DAL.UnitOfWork
             _context = context;
         }
 
-        private ICategoryRepository categories;
-        public ICategoryRepository Categories
+        private IRepository<Category> categories;
+        public IRepository<Category> Categories
         {
             get
             {
                 if (categories == null)
                 {
-                    categories = new CategoryRepository(_context);
+                    categories = new Repository<Category>(_context);
                 }
                 return categories;
             }
         }
 
-        private IProductRepository products;
-        public IProductRepository Products
+        private IRepository<Product> products;
+        public IRepository<Product> Products
         {
             get
             {
                 if (products == null)
                 {
-                    products = new ProductRepository(_context);
+                    products = new Repository<Product>(_context);
                 }
 
                 return products;

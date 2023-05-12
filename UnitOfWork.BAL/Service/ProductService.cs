@@ -10,10 +10,14 @@ namespace UnitOfWork.BAL.Service
     public class ProductService : IService<Product>
     {
         private readonly IUnitOfWork _unitOfWork;
+        Guid id;
+
 
         public ProductService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+
+            id = Guid.NewGuid();
         }
 
         public async Task<IEnumerable<Product>> GetAll()
@@ -28,16 +32,6 @@ namespace UnitOfWork.BAL.Service
 
         public async Task Add(Product entity)
         {
-
-            if (!(await _unitOfWork.Categories.CategoryExists(entity.IdCateogory)))
-            {
-                await _unitOfWork.Categories.Add(new Category
-                {
-                    NameCategory = "No Name"
-                });
-                await _unitOfWork.SaveChangesAsync();
-            }
-
             await _unitOfWork.Products.Add(entity);
             await _unitOfWork.SaveChangesAsync();
         }
@@ -52,6 +46,11 @@ namespace UnitOfWork.BAL.Service
         {
             await _unitOfWork.Products.Delete(entity);
             await _unitOfWork.SaveChangesAsync();
+        }
+
+        public Guid GetID()
+        {
+            return id;
         }
     }
 }

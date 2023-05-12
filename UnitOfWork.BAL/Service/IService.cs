@@ -12,5 +12,7 @@ namespace UnitOfWork.BAL.Service
         Task Add(T entity);
         Task Update(T entity);
         Task Remove(T entity);
+
+        Guid GetID();
     }
 }

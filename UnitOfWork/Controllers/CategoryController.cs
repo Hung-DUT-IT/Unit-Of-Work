@@ -15,15 +15,23 @@ namespace UnitOfWork.Controllers
     {
         private readonly IService<Category> _categoryService;
 
-        public CategoryController(IService<Category> categoryService)
+        private readonly IService<Category> _categoryService_1;
+
+        public CategoryController(IService<Category> categoryService, IService<Category> categoryService_1)
         {
             _categoryService = categoryService;
+            _categoryService_1 = categoryService_1;
         }
 
         // GET: api/Category
         [HttpGet]
         public async Task<IEnumerable<Category>> GetCategories()
         {
+            Console.WriteLine("First Instance:    " + _categoryService.GetID().ToString());
+            Console.WriteLine("Second Instance:   " + _categoryService_1.GetID().ToString());
+
+
+
             return await _categoryService.GetAll();
         }
 
